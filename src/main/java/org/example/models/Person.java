@@ -6,12 +6,14 @@ public class Person {
     private int id;
 
     @NotEmpty(message = "Имя пустое")
+    @Pattern(regexp = "[А-Я][а-я]+ [А-Я][а-я]+ [А-Я][а-я]+", message = "Неверный формат")
     @Size(min = 2, max = 30, message = "Имя должно быть в диаполозне 2-30 символов")
     private String name;
 
-    @Min(value = 18, message = "Минимальный возраст - 18")
+    @Min(value = 8, message = "Минимальный возраст - 8")
+    @Max(value = 140, message = "Максимальный возможный возраст - 140 лет")
+    @NotNull(message = "Введите возраст")
     private int age;
-
 
     public Person() {}
 

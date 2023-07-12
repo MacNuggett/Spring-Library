@@ -1,10 +1,7 @@
 package org.example.models;
 
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Book {
 
@@ -12,13 +9,16 @@ public class Book {
     private int personId;
 
     @NotEmpty(message = "Название пустое")
+    @Pattern(regexp = "[А-Я].+", message = "Неверный формат")
     private String title;
 
     @NotEmpty(message = "Автор не указан")
+    @Pattern(regexp = "[А-Я]\\.[А-Я]\\. [А-Я][а-я]+", message = "Введите автора в следующем формате: \"И.О. Фамилия\"")
     private String author;
 
-    @NotNull(message = "Год публикации не указан")
+    @NotNull(message = "Введите год")
     @Max(value = 2023, message = "Неверная дата")
+    @Min(value = 1, message = "Неверная дата")
     private int year;
 
     public Book(int id, int personId, String title, String author, int year) {
